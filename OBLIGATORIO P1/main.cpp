@@ -43,5 +43,6 @@ int main()
             x++;
         }
         group[i][x]='\0';
+        int x;
     }
 }
