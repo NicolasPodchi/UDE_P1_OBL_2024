@@ -212,7 +212,7 @@ int main()
                 }
                 else
                 {
-                    if (resultadosIngresados[f][k] < resultadosIngresados[f][k])
+                    if (resultadosIngresados[k][f] > resultadosIngresados[f][k])
                     {
                         ganadorIngresado = k;
                     }
@@ -228,7 +228,7 @@ int main()
                 }
                 else
                 {
-                    if (resultadosReales[f][k] < resultadosReales[f][k])
+                    if (resultadosReales[k][f] > resultadosReales[f][k])
                     {
                         ganadorReal = k;
                     }
