@@ -94,7 +94,7 @@ int main()
         }
     }
 
-    // RECORRER EL TRIANGULO SUPERIOR
+    // RECORRER EL TRIANGULO SUPERIOR PARA INGRESAR RESULTADOS
     for (f = 0; f < TAM - 1; f++)
     {
         for (k = 1 + f; k < TAM; k++)
@@ -145,7 +145,7 @@ int main()
         }
     }
 
-    // MOSTRAR MATRIZ
+    // MOSTRAR RESULTADOS INGRESADOS
     for (f = 0; f < TAM; f++)
     {
         for (k = 0; k < TAM; k++)
@@ -163,4 +163,88 @@ int main()
         printf("\n");
     }
     printf("\n");
+
+    // MATRIZ ALEATORIA
+    for (f = 0; f < TAM - 1; f++)
+    {
+        for (k = 1 + f; k < TAM; k++)
+        {
+            resultadosReales[f][k] = (rand() % 10);
+            resultadosReales[k][f] = (rand() % 10);
+        }
+    }
+
+    // MOSTRAR RESULTADOS REALES
+    for (f = 0; f < TAM; f++)
+    {
+        for (k = 0; k < TAM; k++)
+        {
+            if (resultadosReales[f][k] < 10)
+            {
+                printf("[0%d]", resultadosReales[f][k]);
+            }
+            else
+            {
+                printf("[%d]", resultadosReales[f][k]);
+            }
+        }
+
+        printf("\n");
+    }
+
+    printf("\n");
+
+    // CALCULO DE PUNTOS
+    int cantPuntos = 0, ganadorReal, ganadorIngresado;
+    for (f = 0; f < TAM - 1; f++)
+    {
+        for (k = 1 + f; k < TAM; k++)
+        {
+            if (resultadosIngresados[f][k] == resultadosReales[f][k] && resultadosIngresados[k][f] == resultadosReales[k][f])
+            {
+                cantPuntos = cantPuntos + 5;
+            }
+            else
+            {
+                if (resultadosIngresados[f][k] > resultadosIngresados[k][f])
+                {
+                    ganadorIngresado = f;
+                }
+                else
+                {
+                    if (resultadosIngresados[f][k] < resultadosIngresados[f][k])
+                    {
+                        ganadorIngresado = k;
+                    }
+                    else
+                    {
+                        ganadorIngresado = -1;
+                    }
+                }
+
+                if (resultadosReales[f][k] > resultadosReales[k][f])
+                {
+                    ganadorReal = f;
+                }
+                else
+                {
+                    if (resultadosReales[f][k] < resultadosReales[f][k])
+                    {
+                        ganadorReal = k;
+                    }
+                    else
+                    {
+                        ganadorReal = -1;
+                    }
+                }
+
+                if (ganadorIngresado == ganadorReal)
+                {
+                    cantPuntos = cantPuntos + 3;
+                }
+            }
+        }
+    }
+
+    printf("cantidad de pts ///// %d", cantPuntos);
 }
