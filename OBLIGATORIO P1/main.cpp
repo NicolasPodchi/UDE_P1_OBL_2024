@@ -55,7 +55,7 @@ int main()
     // Ingresa el pais
     for (i = 0; i < TAM; i++)
     {
-        printf("\nIngrese un pais: ");
+        printf("\nIngrese el pais %d: ", i + 1);
         fflush(stdin);
         scanf("%c", &c);
 
@@ -82,16 +82,9 @@ int main()
     }
 
     // RELLENAR DIAGONAL PRINCIPAL CON -1
-    printf("diagonal principal\n");
     for (f = 0; f < TAM; f++)
     {
-        for (k = 0; k < TAM; k++)
-        {
-            if (f == k)
-            {
-                resultadosIngresados[f][k] = -1;
-            }
-        }
+        resultadosIngresados[f][f] = -1;
     }
 
     // RECORRER EL TRIANGULO SUPERIOR PARA INGRESAR RESULTADOS
@@ -100,7 +93,7 @@ int main()
         for (k = 1 + f; k < TAM; k++)
         {
             // LOCAL
-            printf("Ingrese los goles de ");
+            printf("\nIngrese los goles de ");
             // Mostrar nombre local
             x = 0;
             while (x < MAX && group[f][x] != '\0')
@@ -116,13 +109,13 @@ int main()
                 printf("%c", group[k][x]);
                 x++;
             }
-            printf(" - ");
+            printf(": ");
 
             scanf("%d", &golesIngresados);
             resultadosIngresados[f][k] = golesIngresados;
 
             // VISITANTE
-            printf("\n Ingrese los goles de ");
+            printf("\nIngrese los goles de ");
             // Mostrar nombre local
             x = 0;
             while (x < MAX && group[k][x] != '\0')
@@ -138,7 +131,7 @@ int main()
                 printf("%c", group[f][x]);
                 x++;
             }
-            printf(" - ");
+            printf(": ");
 
             scanf("%d", &golesIngresados);
             resultadosIngresados[k][f] = golesIngresados;
@@ -162,7 +155,7 @@ int main()
 
         printf("\n");
     }
-    printf("\n");
+    printf("\n\n");
 
     // MATRIZ ALEATORIA
     for (f = 0; f < TAM - 1; f++)
@@ -247,4 +240,44 @@ int main()
     }
 
     printf("cantidad de pts ///// %d", cantPuntos);
+    // IMPRESION FINAL
+    printf("\n\n****************************************\nPenca Copa America 2024 - UDE\n****************************************\n\nApuesta de ");
+    // IMPRIME NOMBRE
+    x = 0;
+    while (x < MAX && nombre[x] != '\0')
+    {
+        printf("%c", nombre[x]);
+        x++;
+    }
+    // IMPRIME GRUPO
+    printf(" - GRUPO: %c", eligegrupo);
+    printf("\n=============================================\n\nPARTIDO - RESULTADO APOSTADO - RESULTADO REAL - PUNTOS OBTENIDOS\n\n");
+    //
+    for (f = 0; f < TAM - 1; f++)
+    {
+        for (k = 1 + f; k < TAM; k++)
+        {
+            // NOMBRE LOCAL
+            x = 0;
+            while (x < MAX && group[f][x] != '\0')
+            {
+                printf("%c", group[f][x]);
+                x++;
+            }
+            printf(",");
+            // NOMBRE VISITANTE
+            x = 0;
+            while (x < MAX && group[k][x] != '\0')
+            {
+                printf("%c", group[k][x]);
+                x++;
+            }
+            // APUESTA
+            printf(" - Apostado: %d,%d", resultadosIngresados[f][k], resultadosIngresados[k][f]);
+            // REAL
+            printf(" - Real: %d,%d", resultadosReales[f][k], resultadosReales[k][f]);
+            // PUNTOS
+            printf(" - Ptos obtenidos: \n");
+        }
+    }
 }
