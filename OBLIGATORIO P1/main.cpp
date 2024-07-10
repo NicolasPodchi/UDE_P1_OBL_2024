@@ -3,10 +3,12 @@
 
 const int MAX = 80;
 const int TAM = 4;
+const int TAM2 = 6;
 
 typedef char cadena[MAX];
 typedef cadena grupo[TAM];
 typedef int matriz[TAM][TAM];
+typedef int arreglo[TAM2];
 
 int main()
 {
@@ -17,6 +19,8 @@ int main()
     cadena nombre;
 
     char eligegrupo;
+
+    arreglo partidos{};
 
     grupo group{};
 
@@ -138,64 +142,19 @@ int main()
         }
     }
 
-    // MOSTRAR RESULTADOS INGRESADOS
-    for (f = 0; f < TAM; f++)
-    {
-        for (k = 0; k < TAM; k++)
-        {
-            if (resultadosIngresados[f][k] < 10)
-            {
-                printf("[0%d]", resultadosIngresados[f][k]);
-            }
-            else
-            {
-                printf("[%d]", resultadosIngresados[f][k]);
-            }
-        }
-
-        printf("\n");
-    }
-    printf("\n\n");
-
-    // MATRIZ ALEATORIA
-    for (f = 0; f < TAM - 1; f++)
-    {
-        for (k = 1 + f; k < TAM; k++)
-        {
-            resultadosReales[f][k] = (rand() % 10);
-            resultadosReales[k][f] = (rand() % 10);
-        }
-    }
-
-    // MOSTRAR RESULTADOS REALES
-    for (f = 0; f < TAM; f++)
-    {
-        for (k = 0; k < TAM; k++)
-        {
-            if (resultadosReales[f][k] < 10)
-            {
-                printf("[0%d]", resultadosReales[f][k]);
-            }
-            else
-            {
-                printf("[%d]", resultadosReales[f][k]);
-            }
-        }
-
-        printf("\n");
-    }
-
     printf("\n");
 
     // CALCULO DE PUNTOS
-    int cantPuntos = 0, ganadorReal, ganadorIngresado;
+    int ganadorReal, ganadorIngresado;
+    int j =0;
     for (f = 0; f < TAM - 1; f++)
     {
         for (k = 1 + f; k < TAM; k++)
         {
+            int ptosObtenidos = 0;
             if (resultadosIngresados[f][k] == resultadosReales[f][k] && resultadosIngresados[k][f] == resultadosReales[k][f])
             {
-                cantPuntos = cantPuntos + 5;
+                ptosObtenidos = 5;
             }
             else
             {
@@ -233,13 +192,13 @@ int main()
 
                 if (ganadorIngresado == ganadorReal)
                 {
-                    cantPuntos = cantPuntos + 3;
+                    ptosObtenidos = 3;
                 }
             }
+            partidos[j] = ptosObtenidos;
+            j++;
         }
     }
-
-    printf("cantidad de pts ///// %d", cantPuntos);
     // IMPRESION FINAL
     printf("\n\n****************************************\nPenca Copa America 2024 - UDE\n****************************************\n\nApuesta de ");
     // IMPRIME NOMBRE
@@ -253,6 +212,7 @@ int main()
     printf(" - GRUPO: %c", eligegrupo);
     printf("\n=============================================\n\nPARTIDO - RESULTADO APOSTADO - RESULTADO REAL - PUNTOS OBTENIDOS\n\n");
     //
+    j=0;
     for (f = 0; f < TAM - 1; f++)
     {
         for (k = 1 + f; k < TAM; k++)
@@ -277,7 +237,55 @@ int main()
             // REAL
             printf(" - Real: %d,%d", resultadosReales[f][k], resultadosReales[k][f]);
             // PUNTOS
-            printf(" - Ptos obtenidos: \n");
+            printf(" - Ptos obtenidos: %d\n",partidos[j]);
+            j++;
         }
     }
+
+     /* MOSTRAR RESULTADOS INGRESADOS
+    for (f = 0; f < TAM; f++)
+    {
+        for (k = 0; k < TAM; k++)
+        {
+            if (resultadosIngresados[f][k] < 10)
+            {
+                printf("[%d]", resultadosIngresados[f][k]);
+            }
+            else
+            {
+                printf("[%d]", resultadosIngresados[f][k]);
+            }
+        }
+
+        printf("\n");
+    }
+    printf("\n\n");
+
+    // MATRIZ ALEATORIA
+    for (f = 0; f < TAM - 1; f++)
+    {
+        for (k = 1 + f; k < TAM; k++)
+        {
+            resultadosReales[f][k] = (rand() % 10);
+            resultadosReales[k][f] = (rand() % 10);
+        }
+    }
+
+    // MOSTRAR RESULTADOS REALES
+    for (f = 0; f < TAM; f++)
+    {
+        for (k = 0; k < TAM; k++)
+        {
+            if (resultadosReales[f][k] < 10)
+            {
+                printf("[%d]", resultadosReales[f][k]);
+            }
+            else
+            {
+                printf("[%d]", resultadosReales[f][k]);
+            }
+        }
+
+        printf("\n");
+    } */
 }
