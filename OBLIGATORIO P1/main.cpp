@@ -160,6 +160,16 @@ int main()
     }
     system("cls");
 
+    // MATRIZ ALEATORIA
+    for (f = 0; f < TAM - 1; f++)
+    {
+        for (k = 1 + f; k < TAM; k++)
+        {
+            resultadosReales[f][k] = (rand() % 10);
+            resultadosReales[k][f] = (rand() % 10);
+        }
+    }
+
     // Calculo de puntos
     for (f = 0; f < TAM - 1; f++)
     {
