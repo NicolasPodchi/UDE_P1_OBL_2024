@@ -52,7 +52,7 @@ int main()
 
     fflush(stdin);
     scanf("%c", &eligegrupo);
-    while (eligegrupo != 'a' && eligegrupo != 'A' && eligegrupo != 'B' && eligegrupo != 'b' && eligegrupo != 'c' && eligegrupo != 'C' && eligegrupo != 'd' && eligegrupo != 'D')
+    while ((eligegrupo < 97 || eligegrupo > 100) && (eligegrupo < 65 || eligegrupo > 68))
     {
         printf("\nGrupo incorrecto. Ingrese el grupo nuevamente: ");
         fflush(stdin);
